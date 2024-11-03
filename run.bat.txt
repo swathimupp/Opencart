@@ -1,0 +1,2 @@
+cd C:\Users\Siva\Documents\Selenium Framework\Opencart
+mvn test

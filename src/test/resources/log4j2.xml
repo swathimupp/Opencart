@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="WARN">
+
+<Properties>
+     <Property name="basePath">./logs</Property>
+</Properties>
+
+  <Appenders>
+    <Console name="CONSOLE" target="SYSTEM_OUT"> <!--1-->
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+    <File name="File" fileName="logs/main.log"> <!--2-->
+      <JsonTemplateLayout/>
+    </File>
+    <File name="File" fileName="${basePath}/automation.log" filePattern="${basePath}/automation-%d{yyyy-MM-dd}.log"> <!--3-->
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+      <SizeBasedTriggerPolicy size="5000"/>
+    </File>
+  </Appenders>
+  <Loggers>
+    <Root level="INFO"> <!--If you make level off then it don't generate logs -->
+     <!-- <AppenderRef ref="CONSOLE" />level="WARN"-->
+      <AppenderRef ref="File"/>
+    </Root>
+    <!--<Logger name="org.example" level="DEBUG"> 
+      <AppenderRef ref="DEBUG_LOG"/>
+    </Logger>-->
+  </Loggers>
+</Configuration>
